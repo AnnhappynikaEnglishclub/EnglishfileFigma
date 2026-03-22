@@ -1,0 +1,138 @@
+import { motion } from "motion/react";
+import { Check, Crown, Zap } from "lucide-react";
+
+export function Pricing() {
+  const options = [
+    {
+      icon: Crown,
+      name: "Полный курс",
+      price: "12 000",
+      period: "10 уроков",
+      description: "Оптимальный вариант для полного прохождения программы",
+      features: [
+        "Все 8 модулей курса",
+        "Дипломный проект",
+        "Сертификат по окончании",
+        "Скидка 15% от стоимости разовых уроков"
+      ],
+      color: "from-[#f59e0b] to-[#f97316]",
+      popular: true
+    },
+    {
+      icon: Zap,
+      name: "Абонемент",
+      price: "1 300",
+      period: "за урок",
+      description: "Гибкий вариант для пробного обучения",
+      features: [
+        "Оплата за каждый урок",
+        "Без долгосрочных обязательств",
+        "Возможность присоединиться в любой момент",
+        "Все материалы курса"
+      ],
+      color: "from-[#14b8a6] to-[#06b6d4]",
+      popular: false
+    }
+  ];
+
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#14b8a6]/10 rounded-full blur-3xl -z-10" />
+
+      <div className="container mx-auto max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-[#14b8a6] to-[#f59e0b] bg-clip-text text-transparent">
+              Стоимость
+            </span>
+          </h2>
+          <p className="text-gray-400 text-lg">
+            Выберите удобный вариант оплаты
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {options.map((option, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              whileHover={{ scale: 1.02 }}
+              className="relative group"
+            >
+              {option.popular && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                  <div className="px-4 py-1 bg-gradient-to-r from-[#f59e0b] to-[#f97316] rounded-full text-sm text-[#0a0e1a]">
+                    Выгодно
+                  </div>
+                </div>
+              )}
+
+              <div className={`absolute inset-0 bg-gradient-to-r ${option.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-3xl blur-xl`} />
+              
+              <div className={`relative bg-[#12182b] border ${option.popular ? 'border-[#f59e0b]/50' : 'border-white/10'} rounded-3xl p-8 h-full hover:border-[#14b8a6]/50 transition-all duration-300`}>
+                <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${option.color} flex items-center justify-center mb-6`}>
+                  <option.icon className="w-7 h-7 text-[#0a0e1a]" />
+                </div>
+
+                <h3 className="text-2xl font-bold mb-2">{option.name}</h3>
+                <p className="text-gray-400 text-sm mb-6">{option.description}</p>
+
+                <div className="mb-6">
+                  <div className="flex items-baseline gap-2">
+                    <span className={`text-5xl font-bold bg-gradient-to-r ${option.color} bg-clip-text text-transparent`}>
+                      {option.price}
+                    </span>
+                    <span className="text-gray-400">руб</span>
+                  </div>
+                  <p className="text-gray-500 mt-1">{option.period}</p>
+                </div>
+
+                <div className="space-y-3 mb-8">
+                  {option.features.map((feature, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div className={`flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r ${option.color} flex items-center justify-center mt-0.5`}>
+                        <Check className="w-3 h-3 text-[#0a0e1a]" />
+                      </div>
+                      <span className="text-gray-300 text-sm leading-relaxed">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <a
+                  href="#register"
+                  className={`block w-full text-center py-3 rounded-xl bg-gradient-to-r ${option.color} text-[#0a0e1a] hover:shadow-lg hover:shadow-[#14b8a6]/30 transition-all duration-300`}
+                >
+                  Выбрать тариф
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-12 text-center"
+        >
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#12182b] border border-[#f59e0b]/30 rounded-full">
+            <span className="text-2xl">📢</span>
+            <p className="text-gray-300">
+              <span className="text-[#f59e0b] font-bold">Набор открыт!</span> Группы маленькие — максимум <span className="text-[#14b8a6]">6 детей</span>, чтобы каждый получил внимание. Места ограничены!
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

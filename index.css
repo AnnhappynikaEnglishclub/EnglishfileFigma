@@ -1,0 +1,62 @@
+import { motion } from "motion/react";
+import { Monitor, Wifi, Headphones } from "lucide-react";
+
+export function Requirements() {
+  const requirements = [
+    {
+      icon: Monitor,
+      text: "Стационарный компьютер или ноутбук с наушниками и микрофоном"
+    },
+    {
+      icon: Wifi,
+      text: "Стабильный интернет"
+    },
+    {
+      icon: Headphones,
+      text: "Установленная программа Zoom"
+    }
+  ];
+
+  return (
+    <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto max-w-5xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-gradient-to-br from-[#12182b] to-[#1e2536] border border-[#14b8a6]/30 rounded-3xl p-8 md:p-12"
+        >
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-1 h-8 bg-gradient-to-b from-[#14b8a6] to-[#06b6d4] rounded-full" />
+            <h2 className="text-2xl sm:text-3xl font-bold">
+              <span className="bg-gradient-to-r from-[#14b8a6] to-[#06b6d4] bg-clip-text text-transparent">
+                Что потребуется
+              </span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {requirements.map((req, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex items-start gap-4"
+              >
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-[#14b8a6]/20 to-[#06b6d4]/20 border border-[#14b8a6]/30 flex items-center justify-center">
+                  <req.icon className="w-6 h-6 text-[#14b8a6]" />
+                </div>
+                <p className="text-gray-300 leading-relaxed pt-2">
+                  {req.text}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

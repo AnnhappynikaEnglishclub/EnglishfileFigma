@@ -1,0 +1,82 @@
+import { motion } from "motion/react";
+import { MessageCircle, CheckCircle, Gamepad2, TrendingUp } from "lucide-react";
+
+export function WhySpecial() {
+  const features = [
+    {
+      icon: MessageCircle,
+      title: "Практическая, живая речь",
+      description: "Акцент на разговорные навыки, а не на грамматику ради грамматики"
+    },
+    {
+      icon: CheckCircle,
+      title: "Реальные ситуации",
+      description: "Все сценарии взяты из настоящей жизни путешественника"
+    },
+    {
+      icon: Gamepad2,
+      title: "Интерактивные задания",
+      description: "Ролевые игры, аудиоситуации, мини-квесты для лучшего усвоения"
+    },
+    {
+      icon: TrendingUp,
+      title: "Уровень A2–B1",
+      description: "Ребёнок выходит на уровень Pre-Intermediate за курс"
+    }
+  ];
+
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Декоративный фон */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#14b8a6]/5 to-transparent" />
+      </div>
+
+      <div className="container mx-auto max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-[#f59e0b] to-[#ec4899] bg-clip-text text-transparent">
+              Почему этот курс особенный?
+            </span>
+          </h2>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="group"
+            >
+              <div className="bg-gradient-to-br from-[#12182b] to-[#1e2536] border border-white/10 rounded-2xl p-6 h-full hover:border-[#14b8a6]/50 transition-all duration-300 relative overflow-hidden">
+                {/* Светящийся эффект при наведении */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#14b8a6]/0 to-[#f59e0b]/0 group-hover:from-[#14b8a6]/10 group-hover:to-[#f59e0b]/10 transition-all duration-300" />
+                
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#14b8a6] to-[#06b6d4] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <feature.icon className="w-7 h-7 text-[#0a0e1a]" />
+                  </div>
+                  
+                  <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
